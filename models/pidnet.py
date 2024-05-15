@@ -16,13 +16,13 @@ algc = False
 
 class PIDNet(nn.Module):
 
-    def __init__(self, m=2, n=3, num_classes=19, planes=64, ppm_planes=96, head_planes=128, augment=True):
+    def __init__(self, m=2, n=3, in_channels=3,num_classes=19, planes=64, ppm_planes=96, head_planes=128, augment=True):
         super(PIDNet, self).__init__()
         self.augment = augment
         
         # I Branch
         self.conv1 =  nn.Sequential(
-                          nn.Conv2d(3,planes,kernel_size=3, stride=2, padding=1),
+                          nn.Conv2d(in_channels,planes,kernel_size=3, stride=2, padding=1),
                           BatchNorm2d(planes, momentum=bn_mom),
                           nn.ReLU(inplace=True),
                           nn.Conv2d(planes,planes,kernel_size=3, stride=2, padding=1),
